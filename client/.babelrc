@@ -1,0 +1,29 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": ["last 2 versions", "ie >= 10"]
+      }
+    }],
+    "react",
+    "stage-0",
+    "flow"
+  ],
+  "env": {
+    "development": {
+      "presets": ["react-hmre"]
+    },
+    "production": {
+      "presets": ["react-optimize"]
+    },
+  },
+  "plugins": [[
+      "react-hot-loader/babel"
+    ],
+    ["typecheck", {
+      "disable": {
+        "production": true
+      }
+    }]
+  ]
+}

@@ -1,0 +1,8 @@
+node_modules/
+/docroot/
+build/
+npm-debug.log
+.eslintcache
+.env
+/server/config/*
+
