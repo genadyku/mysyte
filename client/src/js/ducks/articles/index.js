@@ -83,6 +83,7 @@ export const fetchAllArticles = function() {
     type: FETCH_ARTICLES,
   }
 }
+
 export const fetchArticles = () =>
   axios
     .get('http://localhost:4001/api/articles', {
@@ -103,6 +104,14 @@ export function fetchArticlesFailure(error) {
     payload: error,
   }
 }
+
+export const fetchArticlesReact = () =>
+  axios
+    .get('http://localhost:4001/api/artreact', {
+      headers: [],
+    })
+    .then(response => response.data)
+
 export const fetchArticlesSaga = function*() {
   while (true) {
     try {
@@ -138,10 +147,6 @@ export function fetchArticleFailure(error) {
     payload: error,
   }
 }
-
-/**
- * Sagas
- * */
 
 export const fetchArrticleIdSaga = function*() {
   while (true) {

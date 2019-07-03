@@ -31,7 +31,9 @@
     "react/prefer-stateless-function": 0,
     "comma-dangle": 0,
     "object-curly-spacing": 1,
-    "prettier/prettier": "error",
+    "prettier/prettier": [
+      "error", { "endOfLine": "auto" }
+    ],
     "react/destructuring-assignment": 0,
     "react/jsx-one-expression-per-line": 0,
     "jsx-a11y/label-has-associated-control":0,

@@ -1,4 +1,4 @@
-import { take, put, all } from 'redux-saga/effects'
+import { take, put, all, fork } from 'redux-saga/effects'
 import axios from 'axios'
 
 import { push } from 'connected-react-router'
@@ -314,9 +314,9 @@ export const authRefrechAcountSaga = function*() {
 }
 export function* saga() {
   yield all([
-    signInSaga(),
-    signupSaga(),
-    authConfirmAcountSaga(),
-    authRefrechAcountSaga(),
+    fork(signInSaga),
+    fork(signupSaga),
+    fork(authConfirmAcountSaga),
+    fork(authRefrechAcountSaga),
   ])
 }

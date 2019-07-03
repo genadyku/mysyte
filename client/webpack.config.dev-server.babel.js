@@ -107,13 +107,16 @@ webpackConfig.module.rules = webpackConfig.module.rules.concat({
     },
     {
       loader: 'css-loader',
+      /*
       options: {
         sourceMap: true,
         importLoaders: 1,
         modules: true,
         localIdentName: '[name]__[local]_[hash:base64]',
       },
+      */
     },
+
     {
       loader: 'postcss-loader',
       ident: 'postcss',
@@ -121,6 +124,7 @@ webpackConfig.module.rules = webpackConfig.module.rules.concat({
         sourceMap: true,
         // https://github.com/postcss/postcss-loader/issues/92
         // https://github.com/postcss/postcss-loader/issues/8
+
         plugins: () => [
           precss(),
           // https://github.com/csstools/postcss-preset-env

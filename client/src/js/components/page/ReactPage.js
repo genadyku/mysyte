@@ -1,23 +1,43 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-let styles = {
-  marginTop: '20px',
-}
+import Prism from 'prismjs'
+
+import 'prismjs/themes/prism.css'
+
+import Code from '../Code'
+import { fetchArticleReactId } from '../../ducks/reactArticle'
 
 class ReactPage extends Component {
+  componentDidMount() {
+    this.props.fetchArticleReactId(this.props.match.params.id)
+    Prism.highlightAll()
+  }
+  createMarkup(text) {
+    return { __html: text }
+  }
+
   render() {
+    if (!this.props.articleId.post) return null
+    const { post } = this.props.articleId
+
     return (
-      <section>
-        <div className="container" style={styles}>
-          <div className="row">
-            <div>
-              <h4>Статьи REACT</h4>
-            </div>
-          </div>
+      <div className="container">
+        <div className="row">
+          <h4 className="list-group-item-heading">{post.title}</h4>
+          <Code text={post.text} />
         </div>
-      </section>
+      </div>
     )
   }
 }
 
-export default ReactPage
+function mapStateToProps(state) {
+  return { articleId: state.reactarticles.articleId }
+}
+export default connect(
+  mapStateToProps,
+  {
+    fetchArticleReactId,
+  }
+)(ReactPage)

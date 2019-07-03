@@ -12,6 +12,7 @@ import SigninPage from '../components/page/SigninPage'
 import SignupPage from '../components/page/SignupPage'
 import AccountStatusPage from '../components/page/AccountStatusPage'
 import VerifyEmailPage from '../components/page/VerifyEmailPage'
+import ReactsPage from '../components/page/ReactsPage'
 import ReactPage from '../components/page/ReactPage'
 
 const routes = (
@@ -20,7 +21,8 @@ const routes = (
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/articles" component={ArticlesPage} />
-      <PrivateRoute exact path="/react" component={ReactPage} />
+      <PrivateRoute exact path="/artreact" component={ReactsPage} />
+      <PrivateRoute exact path="/artreact/:id" component={ReactPage} />
       <Route path="/article/:id" component={ArticlePage} />
       <Route path="/signin" component={SigninPage} />
       <Route path="/signup" component={SignupPage} />

@@ -4,6 +4,7 @@ import { reducer as form } from 'redux-form'
 import user from './user'
 import articleReducer, { moduleName } from '../ducks/articles'
 
+import reactarticlesReducer, { moduleNameR } from '../ducks/reactArticle'
 import signinReducer, { moduleName as authModule } from '../ducks/auth'
 
 import initialReducer, { moduleName as initialModule } from '../ducks/initial'
@@ -13,6 +14,7 @@ const rootReducer = history =>
     user,
     form,
     [moduleName]: articleReducer,
+    [moduleNameR]: reactarticlesReducer,
     [authModule]: signinReducer,
     [initialModule]: initialReducer,
     router: connectRouter(history),

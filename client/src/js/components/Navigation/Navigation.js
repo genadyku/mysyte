@@ -38,7 +38,7 @@ class Navigation extends React.Component {
               Статьи
             </Link>
             {isAuthenticated && (
-              <Link className="nav-link" to="/react">
+              <Link className="nav-link" to="/artreact">
                 REACT
               </Link>
             )}

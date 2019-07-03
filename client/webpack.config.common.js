@@ -5,6 +5,10 @@ import webpack from 'webpack'
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin'
 import config from 'config'
 
+// Environment variable injection
+// ================================================================================
+import packageJSON from './package.json'
+
 // Please read the following link if
 // you have no idea how to use this feature
 // https://github.com/motdotla/dotenv
@@ -13,10 +17,6 @@ require('dotenv').config({ silent: true })
 // trace which loader is deprecated
 // feel free to remove that if you don't need this feature
 process.traceDeprecation = false
-
-// Environment variable injection
-// ================================================================================
-import packageJSON from './package.json'
 process.env.PACKAGE_VERSION = packageJSON.version
 
 // Defining config variables
