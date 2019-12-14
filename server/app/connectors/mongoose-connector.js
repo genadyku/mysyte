@@ -12,7 +12,7 @@ export default (mongoUri) => {
 
 
   return mongoose
-    .connect(mongoUri, { useNewUrlParser: true })
+    .connect(mongoUri, { useFindAndModify: false, useNewUrlParser: true })
     .then((mongodb) => {
       console.log("Mongo connected");
 

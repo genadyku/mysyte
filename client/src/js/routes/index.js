@@ -10,13 +10,16 @@ import ArticlesPage from '../components/page/ArticlesPage'
 import ArticlePage from '../components/page/ArticlePage'
 import SigninPage from '../components/page/SigninPage'
 import SignupPage from '../components/page/SignupPage'
+import ForgotPage from '../components/page/ForgotPage'
 import AccountStatusPage from '../components/page/AccountStatusPage'
 import VerifyEmailPage from '../components/page/VerifyEmailPage'
 import ReactsPage from '../components/page/ReactsPage'
 import ReactPage from '../components/page/ReactPage'
+import ResetPasswordPage from '../components/page/ResetPasswordPage'
+import styles from '../../style/index.css'
 
 const routes = (
-  <div>
+  <div className={styles.container}>
     <NavigationPage />
     <Switch>
       <Route exact path="/" component={Home} />
@@ -26,6 +29,11 @@ const routes = (
       <Route path="/article/:id" component={ArticlePage} />
       <Route path="/signin" component={SigninPage} />
       <Route path="/signup" component={SignupPage} />
+      <Route path="/forgot" component={ForgotPage} />
+      <Route
+        path="/reset/:token"
+        render={props => <ResetPasswordPage {...props} />}
+      />
       <Route path="/account/status" component={AccountStatusPage} />
       <Route path="/verifymail/:token" exact component={VerifyEmailPage} />
 

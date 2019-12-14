@@ -1,10 +1,16 @@
 import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 import config from "config";
+const crypto = require("crypto");
 
 import { User } from "../../users";
 import { SECRET } from "../../../config";
-import { createRefreshToken, createToken, getToken } from "./helpers/helper";
-import { sendVerificationEmail } from "./helpers/mail";
+import {
+  createRefreshToken,
+  createToken,
+  getToken /* , generateToken */
+} from "./helpers/helper";
+import { sendVerificationEmail, sendUpdatePassw } from "./helpers/mail";
 
 export const signup = async (req, res, next) => {
   const { username, email, firstName, lastName, password } = req.body;
@@ -146,6 +152,119 @@ export const verifymail = (req, res, next) => {
       );
     }
   );
+};
+
+export const forgot = (req, res) => {
+  const { email } = req.body;
+  try {
+    crypto.randomBytes(32, async (err, buffer) => {
+      if (err) {
+        res.send({
+          success: false,
+          message: "Повторите попытку"
+        });
+        return res.redirect("reset");
+      }
+
+      const token = buffer.toString("hex");
+      const user = await User.findOne({ email: email.toString() });
+
+      if (user) {
+        user.refreshToken = token;
+        user.confirmAccountTokenExpires = Date.now() + 60 * 60 * 1000;
+        await user.save();
+
+        await sendUpdatePassw(config.get("from"), user.email, user, token);
+      } else {
+        res.send({
+          success: false,
+          message: "Такого email нет"
+        });
+        res.redirect("/reset");
+      }
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+export const setpassword = (req, res, next) => {
+  const { password, token } = req.body;
+
+  User.findOne({ refreshToken: token }, (err, user) => {
+    if (!user) {
+      return res
+        .status(422)
+        .send({ error: { message: "Токен не существует", resend: false } });
+    }
+
+    if (new Date() > user.confirmAccountTokenExpires.expires) {
+      return res.status(422).send({
+        error: {
+          message:
+            "Cсылка уже истекла, пожалуйста, запросите сброс пароля еще раз",
+          resend: true
+        }
+      });
+    }
+
+    if (token !== user.refreshToken) {
+      return res.status(422).send({
+        error: {
+          message:
+            "что-то пошло не так, пожалуйста, запросите сброс пароля еще раз",
+          resend: true
+        }
+      });
+    }
+
+    bcrypt.genSalt(10, (err, salt) => {
+      if (err) {
+        return next(err);
+      }
+
+      // const salt = bcrypt.genSaltSync(10);
+
+      const passwordn = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+
+      User.findByIdAndUpdate(user.id, { password: passwordn }, (err) => {
+        if (err) {
+          return next(err);
+        }
+
+        const { username } = user;
+
+        res.json({
+          username: username,
+          message: "Пароль успешно сброшен"
+        });
+      });
+    });
+  });
+};
+
+export const verify = async (req, res, next) => {
+  const { token } = req.body;
+
+  try {
+    const user = await User.findOne({
+      refreshToken: token
+    });
+
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "Ошибка сброса пароля "
+      });
+    } else {
+      return res.json({
+        user: user,
+        message: "Токен для сброса пароля правильный",
+        token: token
+      });
+    }
+  } catch (err) {
+    res.json({ message: err });
+  }
 };
 
 export const resendmail = (req, res, next) => {

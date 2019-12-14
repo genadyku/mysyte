@@ -2,6 +2,8 @@ import { take, call, put, all } from 'redux-saga/effects'
 import axios from 'axios'
 
 export const moduleName = 'articles'
+export const SEARCH_ARTICLE = `SEARCH_ARTICLE`
+
 export const FETCH_ARTICLE = `FETCH_ARTICLE`
 export const FETCH_ARTICLE_SUCCESS = `FETCH_ARTICLE_SUCCESS`
 export const FETCH_ARTICLE_FAILURE = `FETCH_ARTICLE_FAILURE`
@@ -68,6 +70,13 @@ export default function reducer(state = INITIAL_STATE, action) {
 
     default:
       return state
+  }
+}
+
+export function SearchArticles() {
+  console.log('uuu')
+  return {
+    type: SEARCH_ARTICLE,
   }
 }
 

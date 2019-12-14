@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import { unsetAuth } from '../../ducks/initial'
 import NavDropdown from '../NavDropdown'
+import SearchPage from '../page/SearchPage'
 
 class Navigation extends React.Component {
   render() {
@@ -67,18 +68,7 @@ class Navigation extends React.Component {
               Выход
             </Link>
           </ul>
-
-          <form className="form-inline my-1 my-lg-0">
-            <input
-              className="form-control mr-sm-2"
-              type="text"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn   my-2 my-sm-0" type="submit">
-              Search
-            </button>
-          </form>
+          <SearchPage />
         </div>
       </div>
     )

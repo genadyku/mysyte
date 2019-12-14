@@ -40,14 +40,22 @@ class SigninForm extends Component {
             component={renderField}
             label="Пароль*"
           />
-          <div>
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
-            <Link to="/" className="btn btn-error">
-              {' '}
-              Cancel
-            </Link>
+          <div className="row">
+            <div className="col-8">
+              <button type="submit" className="btn btn-primary">
+                Вход
+              </button>
+              <Link to="/" className="btn btn-error">
+                {' '}
+                Отмена
+              </Link>
+            </div>
+            <div className="col-4">
+              <Link to="/forgot" className="btn btn-error">
+                {' '}
+                Забыли пароль
+              </Link>
+            </div>
           </div>
           <div>
             {error && error.message && (
@@ -59,13 +67,36 @@ class SigninForm extends Component {
     )
   }
 }
+const validate = props => {
+  const errors = {}
+  const fields = ['email', 'password']
 
+  fields.forEach(f => {
+    if (!(f in props)) {
+      errors[f] = 'Заполните поле'
+    }
+  })
+
+  if (
+    props.email &&
+    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(props.email)
+  ) {
+    errors.email = 'Введите действительный адрес электронной почты'
+  }
+
+  if (props.password && props.password.length < 6) {
+    errors.password = 'Пароль должен содержать минимум 6 знаков'
+  }
+
+  return errors
+}
 function mapStateToProps(state) {
   return { errorMessage: state.login, status: state.login }
 }
 
 export default reduxForm({
   form: 'auth',
+  validate,
 })(
   connect(
     mapStateToProps,
