@@ -74,7 +74,6 @@ export default function reducer(state = INITIAL_STATE, action) {
 }
 
 export function SearchArticles() {
-  console.log('uuu')
   return {
     type: SEARCH_ARTICLE,
   }

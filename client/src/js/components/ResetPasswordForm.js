@@ -14,11 +14,8 @@ class ResetPasswordForm extends Component {
   }
 
   onSubmit(values) {
-    console.log('66', values)
     const { token } = this.props.match.params
-    console.log('66-1', token)
     values.token = token
-    console.log('66-2', values)
     this.props.setpassw(values)
   }
   render() {

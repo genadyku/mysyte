@@ -1,17 +1,18 @@
+/* eslint-disable react/no-array-index-key */
 import React, { Component } from 'react'
+
 import { connect } from 'react-redux'
 import { reduxForm, Field } from 'redux-form'
 import { Link } from 'react-router-dom'
 
-import renderField from './renderField'
+import renderField from '../../renderField'
 
-import { signup } from '../ducks/auth'
+import { addChapter } from '../../../ducks/lesson'
 
 var divStyle = {
   color: '#d9534f',
 }
-
-class SignupForm extends Component {
+class AddLessonForm extends Component {
   constructor(props) {
     super(props)
 
@@ -19,54 +20,52 @@ class SignupForm extends Component {
   }
 
   onSubmit(values) {
-    this.props.signup(values)
+    console.log(values)
+    this.props.addChapter(values)
   }
-
   render() {
     const { handleSubmit } = this.props
     const { error } = this.props.errorMessage
     return (
-      <div className="container">
+      <div className="add-lesson">
         <form onSubmit={handleSubmit(this.onSubmit)}>
           <Field
-            name="username"
+            name="chapter1"
             type="text"
             component={renderField}
-            label="Логин*"
-          />
-
-          <Field
-            name="email"
-            type="email"
-            component={renderField}
-            label="Email*"
+            label="Название раздела*"
           />
           <Field
-            name="password"
-            type="password"
+            name="title"
+            type="text"
             component={renderField}
-            label="Пароль*"
+            label="Краткое описание раздела*"
+          />
+          <Field
+            name="slug"
+            type="text"
+            component={renderField}
+            label="Ссылка*"
+          />
+          <Field
+            name="textf"
+            type="text"
+            component={renderField}
+            label="Полное описание раздела*"
           />
           <div className="enter">
             <div className="row">
               <div className="col-8">
                 <button type="submit" className="btn btn-primary">
-                  Вход
+                  Сохранить
                 </button>
                 <Link to="/" className="btn btn-error">
                   {' '}
                   Отмена
                 </Link>
               </div>
-              <div className="col-4">
-                <Link to="/forgot" className="btn btn-error">
-                  {' '}
-                  Забыли пароль
-                </Link>
-              </div>
             </div>
           </div>
-
           <div>
             {error && error.message && (
               <div style={divStyle}>{error.message}</div>
@@ -77,10 +76,9 @@ class SignupForm extends Component {
     )
   }
 }
-
 const validate = props => {
   const errors = {}
-  const fields = ['username', 'email', 'password']
+  const fields = ['chapter1', 'title', 'slug', 'textf']
 
   fields.forEach(f => {
     if (!(f in props)) {
@@ -88,30 +86,17 @@ const validate = props => {
     }
   })
 
-  if (
-    props.email &&
-    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(props.email)
-  ) {
-    errors.email = 'Введите действительный адрес электронной почты'
-  }
-
-  if (props.password && props.password.length < 6) {
-    errors.password = 'Пароль должен содержать минимум 6 знаков'
-  }
-
   return errors
 }
-
 function mapStateToProps(state) {
-  return { errorMessage: state.login, status: state.login }
+  return { errorMessage: state.lesson }
 }
-
 export default reduxForm({
-  form: 'auth',
+  form: 'add',
   validate,
 })(
   connect(
     mapStateToProps,
-    { signup }
-  )(SignupForm)
+    { addChapter }
+  )(AddLessonForm)
 )

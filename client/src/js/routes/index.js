@@ -15,7 +15,13 @@ import AccountStatusPage from '../components/page/AccountStatusPage'
 import VerifyEmailPage from '../components/page/VerifyEmailPage'
 import ReactsPage from '../components/page/ReactsPage'
 import ReactPage from '../components/page/ReactPage'
+import ChaptersPage from '../components/page/admin/page/ChaptersPage'
+import LessonPage from '../components/page/admin/page/LessonPage'
+
 import ResetPasswordPage from '../components/page/ResetPasswordPage'
+import AddLessonPage from '../components/page/admin/page/AddLessonPage'
+import AddChapterPage from '../components/page/admin/page/AddChapterPage'
+
 import styles from '../../style/index.css'
 
 const routes = (
@@ -27,9 +33,14 @@ const routes = (
       <PrivateRoute exact path="/artreact" component={ReactsPage} />
       <PrivateRoute exact path="/artreact/:id" component={ReactPage} />
       <Route path="/article/:id" component={ArticlePage} />
+      <Route path="/lessons" component={ChaptersPage} />
+      <Route path="/lesson/:slug" component={LessonPage} />
       <Route path="/signin" component={SigninPage} />
       <Route path="/signup" component={SignupPage} />
       <Route path="/forgot" component={ForgotPage} />
+
+      <Route path="/addLesson" component={AddLessonPage} />
+      <Route path="/addChapter" component={AddChapterPage} />
       <Route
         path="/reset/:token"
         render={props => <ResetPasswordPage {...props} />}

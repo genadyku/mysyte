@@ -10,7 +10,7 @@ class NavigationPage extends React.Component {
 
   render() {
     const isAuthenticated = this.props.isAuthenticated
-    console.log('NP', isAuthenticated)
+
     return (
       <div>
         <Navigation isAuthenticated={isAuthenticated} />

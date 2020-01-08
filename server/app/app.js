@@ -8,6 +8,7 @@ import connectorsInit from "./connectors";
 import autRoute from "./modules/auth";
 
 import articleRoute from "./routes/article";
+import lessonsRoute from "./routes/lessons";
 
 connectorsInit();
 const app = express();
@@ -25,10 +26,15 @@ app.use(
   })
 );
 app.use("/api", articleRoute);
+app.use("/api", lessonsRoute);
 app.use("/api", autRoute);
 
 app.get("/articles", function(req, res) {
   res.send("hello articles");
+});
+
+app.get("/chapter", function(req, res) {
+  res.send("hello chapter");
 });
 
 app.get("/", function(req, res) {

@@ -19,7 +19,6 @@ class ForgotForm extends Component {
   state = { success: false }
 
   onSubmit(values) {
-    console.log('1', values)
     this.props.forgot(values)
     this.setState({ success: true })
   }
@@ -73,7 +72,6 @@ export default reduxForm({
 })(
   connect(
     mapStateToProps,
-
     { forgot }
   )(ForgotForm)
 )

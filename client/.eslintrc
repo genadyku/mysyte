@@ -7,15 +7,31 @@
     "__CONFIG__": true,
     "__ENV__": true
   },
-  "extends": ["airbnb", "eslint:recommended","plugin:prettier/recommended"],
-  "plugins": ["react", "jsx-a11y", "import","prettier"],
+  "extends": [
+    "airbnb",
+    "eslint:recommended",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "import",
+    "prettier"
+  ],
   "parser": "babel-eslint",
-    
   "rules": {
     "no-console": 0,
     "semi": 0,
     "no-unexpected-multiline": 2,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
     "jsx-a11y/no-static-element-interactions": 0,
     "jsx-a11y/click-events-have-key-events": 0,
     "jsx-a11y/no-noninteractive-element-interactions": 0,
@@ -32,11 +48,15 @@
     "comma-dangle": 0,
     "object-curly-spacing": 1,
     "prettier/prettier": [
-      "error", { "endOfLine": "auto" }
+      "error",
+      {
+        "endOfLine": "auto"
+      }
     ],
     "react/destructuring-assignment": 0,
     "react/jsx-one-expression-per-line": 0,
-    "jsx-a11y/label-has-associated-control":0,
-    "import/no-extraneous-dependencies": 0
+    "jsx-a11y/label-has-associated-control": 0,
+    "import/no-extraneous-dependencies": 0,
+    "jsx-a11y/label-has-for": 0
   }
 }

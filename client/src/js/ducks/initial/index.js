@@ -38,7 +38,6 @@ export const setAuth = (token, refreshToken) => {
 }
 
 export const unsetAuth = () => {
-  console.log('UNAUTH-11')
   localStorage.removeItem('token')
   localStorage.removeItem('refreshToken')
   return {
@@ -61,13 +60,11 @@ const initialSate = {
 export default (state = initialSate, action) => {
   switch (action.type) {
     case AUTH_SET:
-      console.log('AUTH_SET3-1', action.token)
       return {
         token: action.token,
         refreshToken: action.refreshToken,
       }
     case AUTH_UNSET:
-      console.log('RED UNAUTH_SET-3')
       return {
         token: null,
         refreshToken: null,
@@ -78,7 +75,7 @@ export default (state = initialSate, action) => {
 }
 export function* refreshTokenAsync(action) {
   const response = yield call(api.refreshToken, action.refreshToken)
-  console.log('1-1', response)
+
   const token = response.data.token
   const refreshToken = response.data.refreshToken
 
@@ -90,7 +87,6 @@ export function* watchRefreshToken() {
 }
 
 export function* logoutUserAsync() {
-  console.log('UNSETAUT-PUSH')
   yield put(push('/'))
 }
 

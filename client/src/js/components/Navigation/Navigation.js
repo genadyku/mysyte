@@ -38,18 +38,24 @@ class Navigation extends React.Component {
             <Link className="nav-link" to="/articles">
               Статьи
             </Link>
+            <Link className="nav-link" to="/lessons">
+              Уроки
+            </Link>
             {isAuthenticated && (
               <Link className="nav-link" to="/artreact">
                 REACT
               </Link>
             )}
-            <NavDropdown name="Dropdown">
-              <a className="dropdown-item" href="/">
-                Action
-              </a>
-              <a className="dropdown-item" href="/">
-                Another action
-              </a>
+            <Link className="nav-link" to="/addLesson">
+              Добавить
+            </Link>
+            <NavDropdown name="Добавить раздел">
+              <Link className="dropdown-item" to="/addChapter">
+                Добавить
+              </Link>
+              <Link className="dropdown-item" to="/addLesson">
+                Добавить подраздел
+              </Link>
               <div className="dropdown-divider" />
               <a className="dropdown-item" href="/">
                 Something else here

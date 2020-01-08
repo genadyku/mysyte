@@ -12,7 +12,6 @@ class VerifyEmail extends Component {
   }
   componentDidMount() {
     const { token } = this.props
-    console.log('VERY', token)
     this.props.authConfirmAccountToken(token)
   }
 
@@ -39,7 +38,6 @@ function mapStateToProps(state) {
   return {
     error: state.login,
     status: state.login,
-    //token: state.login,
   }
 }
 

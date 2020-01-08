@@ -16,3 +16,74 @@ body {
 .help-block {
   color: #ff0000;
 }
+.text-area {
+  width: 900px;
+  height: 400px;
+}
+.enter {
+  margin-top: 20px;
+}
+.add-lesson {
+  width: 700px;
+}
+.add-lesson select {
+  height: 35px;
+  width: 700px;
+}
+.add-lesson textarea {
+  width: 700px;
+}
+.lesson-content {
+    background: #fff;
+    outline: none;
+}
+.frontpage-content__part {
+    display: inline-block;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+    background-color: #9b6b6b;
+    border-radius: 12px;
+    font-size: 12px;
+    line-height: 14px;
+    padding: 3px 8px;
+
+    text-align: center;
+    color: #fff;
+}
+.list-title {
+    list-style: none;
+    border-bottom: 1px solid #ebebeb;
+}
+.list-title {
+   margin-top: 20px;
+}
+.lesson-list{
+margin-top: 14px;
+
+}
+
+
+.list-sub {
+    font-size: 16px;
+    line-height: 23px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    margin-bottom: 10px;
+    list-style-type: none;
+    -webkit-column-gap: 10px;
+    column-gap: 10px;
+    -webkit-columns: 3;
+    columns: 3;
+}
+.lesson-id{
+
+    font-size: 16px;
+    line-height: 23px;
+    padding: 0;
+
+    margin-top: 30px;
+
+
+
+}
