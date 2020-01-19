@@ -10,7 +10,7 @@ import { fetchArticleReactId } from '../../ducks/reactArticle'
 
 class ReactPage extends Component {
   componentDidMount() {
-    this.props.fetchArticleReactId(this.props.match.params.id)
+    this.props.fetchArticleReactId(this.props.match.params.slug)
     Prism.highlightAll()
   }
   createMarkup(text) {
@@ -24,8 +24,10 @@ class ReactPage extends Component {
     return (
       <div className="container">
         <div className="row">
-          <h4 className="list-group-item-heading">{post.title}</h4>
-          <Code text={post.text} />
+          <div className="articles-id">
+            <h4 className="list-group-item-heading">{post.title}</h4>
+            <Code text={post.textf} />
+          </div>
         </div>
       </div>
     )

@@ -5,19 +5,21 @@ import { fetchArticleId } from '../../ducks/articles'
 
 class ArticlePage extends Component {
   componentDidMount() {
-    this.props.fetchArticleId(this.props.match.params.id)
+    this.props.fetchArticleId(this.props.match.params.slug)
   }
   render() {
-    if (!this.props.articleId.post) return null
-    const { post } = this.props.articleId
+    if (!this.props.article.post) return null
+    const { post } = this.props.article
 
+    console.log('ART-9', post)
     return (
       <section>
         <div className="container">
           <div className="row">
-            <div>
+            {post.title}
+            <div className="articles-id">
               <h4 className="list-group-item-heading">{post.title}</h4>
-              <div className="post">{post.text}</div>
+              <div className="post">{post.textf}</div>
             </div>
           </div>
         </div>
@@ -27,7 +29,7 @@ class ArticlePage extends Component {
 }
 
 function mapStateToProps(state) {
-  return { articleId: state.articles.articleId }
+  return { article: state.articles.articleId }
 }
 export default connect(
   mapStateToProps,

@@ -1,11 +1,11 @@
 import mongoose, { Schema } from "mongoose";
 
 
-const artreactSchema = Schema({
+const ReactArticleSchema = Schema({
   title: String,
-  texthort: String,
-  text: String
+  titleShort: String,
+  slug: String,
+  textf: String,
 });
 
-
-export default mongoose.model("Artreact", artreactSchema);
+export default mongoose.model("ReactArticle", ReactArticleSchema);

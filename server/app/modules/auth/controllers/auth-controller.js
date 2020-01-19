@@ -51,7 +51,7 @@ export const signup = async (req, res, next) => {
         result.refreshToken
       );
       res.json({
-        message: "Welcome",
+        message: "Welcome-1",
         token: createToken(result),
         refreshToken: result.refreshToken,
         name: result.name
@@ -65,7 +65,9 @@ export const signup = async (req, res, next) => {
 
 export const signin = (req, res, next) => {
   const { email, password } = req.body;
+
   User.findOne({ email }, (err, user) => {
+    let admin;
     if (err) {
       return next(err);
     }
@@ -98,16 +100,20 @@ export const signin = (req, res, next) => {
         message: "Ошибка аутентификации. Пользователь или пароль неверны."
       });
     } else {
+      admin = user.admin;
+      console.log("0-1-1", admin);
       user.refreshToken = createRefreshToken({ email: email });
       user.save((err, result) => {
         if (err) {
           res.status(400).send(err);
         } else {
+          console.log("1-1-1", admin );
           res.json({
-            message: "Welcome",
+            message: "Welcome-2",
             token: createToken(result),
             refreshToken: result.refreshToken,
-            name: result.name
+            name: result.name,
+            admin: admin
           });
         }
       });
@@ -143,7 +149,7 @@ export const verifymail = (req, res, next) => {
           console.log("SUCCES  confirm  SAVE");
 
           res.json({
-            message: "Welcome",
+            message: "Welcome-3",
             token: createToken(doc),
             refreshToken: refreshToken,
             success: true
@@ -316,7 +322,7 @@ export const refreshToken = (req, res, next) => {
                     res.status(400).send(err);
                   } else {
                     res.json({
-                      message: "Welcome",
+                      message: "Welcome-4",
                       token: createToken(result),
                       refreshToken: result.refreshToken,
                       name: result.name

@@ -1,4 +1,4 @@
 import Article from "./article";
-import Artreact from "./reacta";
+import ReactArticle from "./reacta";
 
-export { Article, Artreact };
+export { Article, ReactArticle };

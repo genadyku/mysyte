@@ -1,5 +1,6 @@
 import { take, call, put, all } from 'redux-saga/effects'
 import axios from 'axios'
+import { push } from 'connected-react-router'
 
 export const moduleName = 'articles'
 export const SEARCH_ARTICLE = `SEARCH_ARTICLE`
@@ -11,6 +12,10 @@ export const FETCH_ARTICLE_FAILURE = `FETCH_ARTICLE_FAILURE`
 export const FETCH_ARTICLES = `FETCH_ARTICLES`
 export const FETCH_ARTICLES_SUCCESS = `FETCH_ARTICLES_SUCCESS`
 export const FETCH_ARTICLES_FAILURE = `FETCH_ARTICLES_FAILURE`
+
+export const ADD_ARTICLE_REQUEST = `ADD_ARTICLE_REQUEST`
+export const ADD_ARTICLE_SUCCESS = `ADD_ARTICLE_SUCCESS`
+export const ADD_ARTICLE_FAILURE = `ADD_ARTICLE_FAILURE`
 
 const INITIAL_STATE = {
   articleList: { posts: [], error: null, loading: false },
@@ -29,6 +34,7 @@ export default function reducer(state = INITIAL_STATE, action) {
         },
       }
     case FETCH_ARTICLE_SUCCESS:
+      console.log('RED-ART', payload)
       return {
         ...state,
         articleId: {
@@ -79,16 +85,22 @@ export function SearchArticles() {
   }
 }
 
-export function fetchArticleId(id) {
+export function fetchArticleId(slug) {
   return {
     type: FETCH_ARTICLE,
-    payload: { id },
+    payload: { slug },
   }
 }
 
 export const fetchAllArticles = function() {
   return {
     type: FETCH_ARTICLES,
+  }
+}
+export const addArticle = function(data) {
+  return {
+    type: ADD_ARTICLE_REQUEST,
+    payload: data,
   }
 }
 
@@ -132,8 +144,8 @@ export const fetchArticlesSaga = function*() {
   }
 }
 
-function fetchArticle(id) {
-  return axios.get(`http://localhost:4001/api/article/${id}`)
+function fetchArticle(slug) {
+  return axios.get(`http://localhost:4001/api/article/${slug}`)
 }
 
 export function fetchArticleIdSuccess(article) {
@@ -156,16 +168,38 @@ export function fetchArticleFailure(error) {
   }
 }
 
-export const fetchArrticleIdSaga = function*() {
+export const fetchArticleIdSaga = function*() {
   while (true) {
     const action = yield take(FETCH_ARTICLE)
 
-    const resp = yield call(fetchArticle, action.payload.id)
-
+    const resp = yield call(fetchArticle, action.payload.slug)
+    console.log('SAG-1', resp)
     yield put(fetchArticleIdSuccess(resp.data))
   }
 }
 
+export const addArticleSaga = function*() {
+  while (true) {
+    const action = yield take(ADD_ARTICLE_REQUEST)
+
+    try {
+      const response = yield axios.post(
+        'http://localhost:4001/api/addarticle',
+        action.payload
+      )
+
+      yield put({
+        type: ADD_ARTICLE_SUCCESS,
+        payload: { response },
+      })
+
+      yield put(push('/articles'))
+    } catch (err) {
+      yield put({ type: ADD_ARTICLE_FAILURE, payload: err.response })
+    }
+  }
+}
+
 export function* saga() {
-  yield all([fetchArticlesSaga(), fetchArrticleIdSaga()])
+  yield all([fetchArticlesSaga(), fetchArticleIdSaga(), addArticleSaga()])
 }

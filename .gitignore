@@ -5,4 +5,4 @@ npm-debug.log
 .eslintcache
 .env
 /server/config/*
-
+.vscode

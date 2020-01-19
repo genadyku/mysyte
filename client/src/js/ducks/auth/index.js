@@ -217,6 +217,8 @@ export const signInSaga = function*() {
         type: SIGN_IN_SUCCESS,
         payload: { response },
       })
+      console.log('SAGA-SIGNIN', response)
+      console.log('SAGA-SIGNIN-admin', response.data.admin)
       yield put(setAuth(response.data.token, response.data.refreshToken))
       yield put(push('/'))
     } catch (err) {

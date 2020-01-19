@@ -1,22 +1,22 @@
-import { Artreact } from "../models";
+import { ReactArticle } from "../models";
 
 
 export async function GetArticlesReact() {
   let articles;
 
   try {
-    articles = await Artreact.find({}).exec();
+    articles = await ReactArticle.find({}).exec();
   } catch (e) {
     throw e;
   }
   return articles;
 }
 
-export async function GetArticlesIdReact(id) {
+export async function GetArticlesIdReact(slug) {
   let article;
 
   try {
-    article = await Artreact.findById({ "_id": id }).exec();
+    article = await ReactArticle.findOne({ "slug": slug }).exec();
   } catch (e) {
     throw e;
   }

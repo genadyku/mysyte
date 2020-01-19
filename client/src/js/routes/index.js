@@ -21,6 +21,8 @@ import LessonPage from '../components/page/admin/page/LessonPage'
 import ResetPasswordPage from '../components/page/ResetPasswordPage'
 import AddLessonPage from '../components/page/admin/page/AddLessonPage'
 import AddChapterPage from '../components/page/admin/page/AddChapterPage'
+import AddArticlePage from '../components/page/admin/page/AddArticlePage'
+import AddReactArticlePage from '../components/page/admin/page/AddReactArticlePage'
 
 import styles from '../../style/index.css'
 
@@ -31,23 +33,27 @@ const routes = (
       <Route exact path="/" component={Home} />
       <Route path="/articles" component={ArticlesPage} />
       <PrivateRoute exact path="/artreact" component={ReactsPage} />
-      <PrivateRoute exact path="/artreact/:id" component={ReactPage} />
-      <Route path="/article/:id" component={ArticlePage} />
+      <PrivateRoute exact path="/artreact/:slug" component={ReactPage} />
+      <Route path="/article/:slug" component={ArticlePage} />
       <Route path="/lessons" component={ChaptersPage} />
       <Route path="/lesson/:slug" component={LessonPage} />
       <Route path="/signin" component={SigninPage} />
       <Route path="/signup" component={SignupPage} />
       <Route path="/forgot" component={ForgotPage} />
-
-      <Route path="/addLesson" component={AddLessonPage} />
-      <Route path="/addChapter" component={AddChapterPage} />
+      <PrivateRoute exact path="/addLesson" component={AddLessonPage} />
+      <PrivateRoute exact path="/addChapter" component={AddChapterPage} />
+      <PrivateRoute exact path="/addArticle" component={AddArticlePage} />
+      <PrivateRoute
+        exact
+        path="/addReactArticle"
+        component={AddReactArticlePage}
+      />
       <Route
         path="/reset/:token"
         render={props => <ResetPasswordPage {...props} />}
       />
       <Route path="/account/status" component={AccountStatusPage} />
       <Route path="/verifymail/:token" exact component={VerifyEmailPage} />
-
       <Route component={NoMatch} />
     </Switch>
   </div>

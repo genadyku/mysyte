@@ -30,7 +30,7 @@ class ArticlesPage extends Component {
       <section>
         <div className="container" style={styles}>
           <div className="row">
-            <div>
+            <div className="articles-full">
               <h4>Статьи</h4>
               {this.renderArticles()}
             </div>

@@ -16,7 +16,7 @@ class Navigation extends React.Component {
           className="navbar-brand"
           href="https://getbootstrap.com/docs/4.0/examples/jumbotron/#"
         >
-          Navbar
+          Javascript
         </a>
         <button
           className="navbar-toggler custom-toggler"
@@ -46,21 +46,26 @@ class Navigation extends React.Component {
                 REACT
               </Link>
             )}
-            <Link className="nav-link" to="/addLesson">
-              Добавить
-            </Link>
-            <NavDropdown name="Добавить раздел">
-              <Link className="dropdown-item" to="/addChapter">
-                Добавить
-              </Link>
-              <Link className="dropdown-item" to="/addLesson">
-                Добавить подраздел
-              </Link>
-              <div className="dropdown-divider" />
-              <a className="dropdown-item" href="/">
-                Something else here
-              </a>
-            </NavDropdown>
+            {isAuthenticated && (
+              <NavDropdown name="Добавить">
+                <Link className="dropdown-item" to="/addArticle">
+                  Добавить статью
+                </Link>
+                <Link className="dropdown-item" to="/addReactArticle">
+                  Добавить статью React
+                </Link>
+              </NavDropdown>
+            )}
+            {isAuthenticated && (
+              <NavDropdown name="Добавить раздел">
+                <Link className="dropdown-item" to="/addChapter">
+                  Добавить
+                </Link>
+                <Link className="dropdown-item" to="/addLesson">
+                  Добавить подраздел
+                </Link>
+              </NavDropdown>
+            )}
           </ul>
           <ul className="navbar-nav navbar-right ">
             <Link className="nav-link" to="/signin">

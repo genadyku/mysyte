@@ -12,11 +12,11 @@ try {
  return articles;
 }
 
-export async function GetArticlesId(id) {
+export async function GetArticlesId(slug) {
   let article;
 
   try {
-       article = await Article.findById({ "_id": id}).exec();
+    article = await Article.findOne({ "slug": slug}).exec();
   } catch (e) {
     throw e;
   }

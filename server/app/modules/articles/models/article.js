@@ -1,10 +1,11 @@
 import mongoose, {Schema} from "mongoose";
 
 
-const articleSchema = Schema({
+const ArticleSchema = Schema({
   title: String,
-  text_hort: String,
+  titleShort: String,
+  slug: String,
+  textf: String,
 });
 
-
-export default mongoose.model("Article", articleSchema);
+export default mongoose.model("Article", ArticleSchema);
