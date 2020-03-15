@@ -6,7 +6,24 @@
 }
 body {
   margin: 0;
+  font-style: normal;
+    font-variant-ligatures: normal;
+    font-variant-caps: normal;
+    font-variant-numeric: normal;
+    font-variant-east-asian: normal;
+    font-weight: normal;
+    font-stretch: normal;
+    font-size: 14px;
+    line-height: 20px;
+    font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
+
+h6{
+ color: #551a8b;
+
+}
+
+
 .container {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -106,5 +123,70 @@ margin-top: 14px;
   padding: 0;
   margin-top: 30px;
   margin-left: 100px;
+
+}
+.lesson-chapter{
+
+
+background-color: #e7bdbd;
+
+}
+.lesson-list {
+
+margin: 0 30px;
+
+}
+
+.sidebar{
+   margin: 0 2rem 0 0;
+
+}
+
+.sidebar-inner{
+    overflow: auto;
+    max-height: 100%;
+    margin: 0 80px 0 -20px;
+
+
+}
+.sidebar-content{
+  padding: 23px 0;
+  font-size: 14px;
+  background: #f5f2f0;
+  min-height: calc(100vh - 50px);
+
+
+}
+.sidebar-nav-links{
+
+
+    margin: 8px 0;
+    display: block;
+
+}
+
+.sidebar-nav-link{
+   list-style-type:none;
+  line-height: 1.1;
+    margin: 8px 0;
+    color:#333;
+}
+.sidebar-nav-link a{
+    color:#333;
+}
+.list-sub a{
+
+  color:#333;
+}
+
+.list__lesson {
+
+margin: 10px 0 10px 0;
+padding: 10px 0 10px 0;
+ border: 1px solid #0a92bb;
+}
+.searchform{
+
+  height: 35px;
 
 }

@@ -8,7 +8,7 @@ import SearchPage from '../page/SearchPage'
 
 class Navigation extends React.Component {
   render() {
-    const { isAuthenticated } = this.props
+    const { isAuthenticated, isAdmin } = this.props
 
     return (
       <div className="navbar  navbar-expand-md  navbar-dark    bg-info ">
@@ -46,7 +46,7 @@ class Navigation extends React.Component {
                 REACT
               </Link>
             )}
-            {isAuthenticated && (
+            {isAuthenticated && isAdmin && (
               <NavDropdown name="Добавить">
                 <Link className="dropdown-item" to="/addArticle">
                   Добавить статью
@@ -56,7 +56,7 @@ class Navigation extends React.Component {
                 </Link>
               </NavDropdown>
             )}
-            {isAuthenticated && (
+            {isAuthenticated && isAdmin && (
               <NavDropdown name="Добавить раздел">
                 <Link className="dropdown-item" to="/addChapter">
                   Добавить
@@ -64,9 +64,13 @@ class Navigation extends React.Component {
                 <Link className="dropdown-item" to="/addLesson">
                   Добавить подраздел
                 </Link>
+                <Link className="dropdown-item" to="/actLesson">
+                  Редактировать
+                </Link>
               </NavDropdown>
             )}
           </ul>
+          <SearchPage />
           <ul className="navbar-nav navbar-right ">
             <Link className="nav-link" to="/signin">
               Вход
@@ -79,7 +83,6 @@ class Navigation extends React.Component {
               Выход
             </Link>
           </ul>
-          <SearchPage />
         </div>
       </div>
     )

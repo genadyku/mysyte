@@ -5,8 +5,8 @@ import Prism from 'prismjs'
 
 import 'prismjs/themes/prism.css'
 
-import Code from '../Code'
-import { fetchArticleReactId } from '../../ducks/reactArticle'
+import Code from '../../Code'
+import { fetchArticleReactId } from '../../../ducks/reactArticle'
 
 class ReactPage extends Component {
   componentDidMount() {

@@ -16,6 +16,87 @@ export async function getChapters(req, res, next) {
   return res.json(chapters);
 }
 
+export async function deleteLesson(req, res, next) {
+  console.log("delete:", req.params.id);
+  try {
+    return await Lesson.findByIdAndRemove(req.params.id);
+  } catch ({ message }) {
+    return next({
+      status: 500,
+      message
+    });
+  }
+}
+
+
+export async function GetLessonEdit(req, res, next) {
+  let lessons;
+  const { _id, textf } = req.body;
+
+  try {
+    console.log("1-0", _id);
+    console.log("1-0-1", textf );
+    lessons = await LessonService.GetLessonsEdit();
+  //  console.log("1-1", lessons);
+  //  lesson = await Lesson.findOneAndUpdate({ _id: _id }, { $set: { textf: textf }}, { new: true } );
+  //  console.log("edt", lessons);
+  } catch ({ message }) {
+    return next({
+      status: 500,
+      message
+    });
+  }
+  return res.json(lessons);
+}
+
+export async function GetLessonEditId(req, res, next) {
+  let lesson;
+  console.log("Edit-1:", req.params.id);
+  // const id = req.params.id;
+
+  try {
+   // const lesson = await Lesson.findOne({ _id: id });
+    // lesson = await Lesson.findOneAndUpdate({ _id: _id }, { $set: { textf: textf }}, { new: true } );
+    lesson = await LessonService.GetLessonId(req.params.id);
+
+    console.log("edt-les", lesson);
+  } catch ({ message }) {
+    return next({
+      status: 500,
+      message
+    });
+  }
+  return res.json(lesson);
+}
+
+export async function UpdateLessonId(req, res, next) {
+  const { id, texthort, textf } = req.body;
+  let lesson;
+
+  try {
+    lesson = await LessonService.GetLessonId(id);
+    lesson = await Lesson.findOneAndUpdate({ _id: id }, { $set: { titleShort: texthort, textf: textf } }, {new: true});
+  } catch ({ message }) {
+    return next({
+      status: 500,
+      message
+    });
+  }
+  return res.json(lesson);
+}
+export async function getChapter(req, res, next) {
+  let chapter;
+  try {
+    chapter = await LessonService.GetChapter(req.params.slug);
+  } catch ({ message }) {
+    return next({
+      status: 500,
+      message
+    });
+  }
+  return res.json(chapter);
+}
+
 export async function GetLessons(req, res, next) {
   let lessons;
   try {
@@ -32,7 +113,6 @@ export async function GetLesson(req, res, next) {
   let lesson;
   try {
     lesson = await LessonService.GetLesson(req.params.slug);
-    console.log("LESSON", lesson);
   } catch ({ message }) {
     return next({
       status: 500,

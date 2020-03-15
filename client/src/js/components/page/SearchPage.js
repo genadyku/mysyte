@@ -16,18 +16,19 @@ class SearchPage extends Component {
     return (
       <form className="form-inline my-1 my-lg-0">
         <input
-          className="form-control mr-sm-2"
+          className="form-control searchform  mr-sm-1"
           type="text"
           placeholder="Search"
           aria-label="Search"
         />
 
         <button
-          className="btn   my-2 my-sm-0"
+          className="btn searchform  my-2 my-sm-0"
           type="button"
           onClick={this.handleClick}
         >
-          Search
+          {' '}
+          Поиск
         </button>
       </form>
     )

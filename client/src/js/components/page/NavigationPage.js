@@ -10,16 +10,20 @@ class NavigationPage extends React.Component {
 
   render() {
     const isAuthenticated = this.props.isAuthenticated
+    const isAdmin = this.props.isAdmin
 
     return (
       <div>
-        <Navigation isAuthenticated={isAuthenticated} />
+        <Navigation isAuthenticated={isAuthenticated} isAdmin={isAdmin} />
       </div>
     )
   }
 }
 function mapStateToProps(state) {
-  return { isAuthenticated: !!state.initial.token }
+  return {
+    isAuthenticated: !!state.initial.token,
+    isAdmin: !!parseInt(state.login.admin),
+  }
 }
 
 export default connect(

@@ -11,6 +11,30 @@ export async function GetChapters() {
   return chapters;
 }
 
+export async function GetLessonsEdit() {
+  let lesson;
+
+  try {
+    lesson = await Lesson.find({}).exec();
+  } catch (e) {
+    throw e;
+  }
+  return lesson;
+}
+
+export async function GetChapter(slug) {
+  let lessons;
+
+  try {
+    lessons = await Chapter.findOne({ "slug": slug})
+      .populate("lessons")
+      .exec();
+  } catch (e) {
+    throw e;
+  }
+  return lessons;
+}
+
 export async function GetLessons() {
   let lessons;
 
@@ -26,12 +50,24 @@ export async function GetLessons() {
 
 export async function GetLesson(slug) {
   let lesson;
-  console.log("SLUG1=>:", slug);
+
   try {
     lesson = await Lesson.findOne({ "slug": slug }).exec();
-    console.log("LESSON=>:", lesson);
   } catch (e) {
     throw e;
   }
   return lesson;
 }
+
+export async function GetLessonId(id) {
+  let lesson;
+
+  try {
+    lesson = await Lesson.findOne({ _id: id});
+  } catch (e) {
+    throw e;
+  }
+  return lesson;
+}
+
+

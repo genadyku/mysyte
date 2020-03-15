@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import ArticleList from '../ArticleList'
+import ArticleList from './ArticleList'
 
-import { fetchAllArticles } from '../../ducks/articles'
+import { fetchAllArticles } from '../../../ducks/articles'
 
 let styles = {
   marginTop: '20px',

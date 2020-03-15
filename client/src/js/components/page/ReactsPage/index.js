@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import ChapterList from '../ChapterList'
+import ReactArticleList from './ReactArticleList'
 
-import { fetchAllLessons } from '../../../../ducks/lesson'
+import { fetchAllArticlesReact } from '../../../ducks/reactArticle'
 
 let styles = {
   marginTop: '20px',
 }
 
-class ChaptersPage extends Component {
+class ReactsPage extends Component {
   componentDidMount() {
-    this.props.fetchAllLessons()
+    this.props.fetchAllArticlesReact()
   }
   renderArticles() {
-    const { chapters, loading, error } = this.props.chapters
+    const { posts, loading, error } = this.props.articleList
 
     if (error) return <h5>Server not responce ...</h5>
     if (loading == true) {
@@ -23,17 +23,16 @@ class ChaptersPage extends Component {
         </div>
       )
     }
-
-    return <ChapterList chapters={chapters} />
+    return <ReactArticleList articles={posts} />
   }
+
   render() {
     return (
       <section>
         <div className="container" style={styles}>
           <div className="row">
-            <div className="lesson-content">
-              <h4>Язык программирования JavaScript</h4>
-              <div className="frontpage-content__part">Часть первая</div>
+            <div>
+              <h4>Уроки по RE</h4>
               {this.renderArticles()}
             </div>
           </div>
@@ -42,15 +41,10 @@ class ChaptersPage extends Component {
     )
   }
 }
-/*
 function mapStateToProps(state) {
-  return { chapters: state.lesson }
-}
-*/
-function mapStateToProps(state) {
-  return { chapters: state.lesson.lessons }
+  return { articleList: state.reactarticles.articleList }
 }
 export default connect(
   mapStateToProps,
-  { fetchAllLessons }
-)(ChaptersPage)
+  { fetchAllArticlesReact }
+)(ReactsPage)

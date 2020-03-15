@@ -15,14 +15,18 @@ import AccountStatusPage from '../components/page/AccountStatusPage'
 import VerifyEmailPage from '../components/page/VerifyEmailPage'
 import ReactsPage from '../components/page/ReactsPage'
 import ReactPage from '../components/page/ReactPage'
-import ChaptersPage from '../components/page/admin/page/ChaptersPage'
-import LessonPage from '../components/page/admin/page/LessonPage'
+import ChaptersPage from '../components/page/ChaptersPage'
+import LessonPage from '../components/page/LessonPage'
 
 import ResetPasswordPage from '../components/page/ResetPasswordPage'
+import AppLessonsPage from '../components/page/AppLessonsPage'
+
 import AddLessonPage from '../components/page/admin/page/AddLessonPage'
 import AddChapterPage from '../components/page/admin/page/AddChapterPage'
 import AddArticlePage from '../components/page/admin/page/AddArticlePage'
 import AddReactArticlePage from '../components/page/admin/page/AddReactArticlePage'
+import ActionLessonPage from '../components/page/admin/page/ActionLessonPage'
+import EditLessonPage from '../components/page/admin/page/EditLessonPage'
 
 import styles from '../../style/index.css'
 
@@ -36,13 +40,17 @@ const routes = (
       <PrivateRoute exact path="/artreact/:slug" component={ReactPage} />
       <Route path="/article/:slug" component={ArticlePage} />
       <Route path="/lessons" component={ChaptersPage} />
-      <Route path="/lesson/:slug" component={LessonPage} />
+      <Route exact path="/chapter/:slug" component={AppLessonsPage} />
+      <Route exact path="/lesson/:slug" component={LessonPage} />
       <Route path="/signin" component={SigninPage} />
       <Route path="/signup" component={SignupPage} />
       <Route path="/forgot" component={ForgotPage} />
       <PrivateRoute exact path="/addLesson" component={AddLessonPage} />
+      <PrivateRoute exact path="/actLesson" component={ActionLessonPage} />
       <PrivateRoute exact path="/addChapter" component={AddChapterPage} />
       <PrivateRoute exact path="/addArticle" component={AddArticlePage} />
+      <PrivateRoute exact path="/lesson/:id/edit" component={EditLessonPage} />
+
       <PrivateRoute
         exact
         path="/addReactArticle"

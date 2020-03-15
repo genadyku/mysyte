@@ -149,5 +149,4 @@ webpackConfig.entry = [
   'webpack/hot/only-dev-server',
   `./${APP_ENTRY_POINT}`,
 ]
-
 export default webpackConfig

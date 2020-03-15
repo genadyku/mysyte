@@ -4,13 +4,13 @@ import Prism from 'prismjs'
 
 import 'prismjs/themes/prism.css'
 
-import Code from '../../../Code'
+import Code from '../../Code'
 
-import { fetchLessonSlug } from '../../../../ducks/lesson'
+import SidebarPage from '../AppLessonsPage/SidebarPage'
+import { fetchLessonSlug } from '../../../ducks/lesson'
 
 class LessonPage extends Component {
   componentDidMount() {
-    console.log('param', this.props.match.params.slug)
     this.props.fetchLessonSlug(this.props.match.params.slug)
     Prism.highlightAll()
   }
@@ -22,9 +22,12 @@ class LessonPage extends Component {
     const { lesson } = this.props.lesson
 
     return (
-      <section>
-        <div className="container">
-          <div className="row">
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col col-lg-2">
+            <SidebarPage />
+          </div>
+          <div className="col col-lg-10">
             <div className="lesson-id">
               <h4 className="list-group-item-heading">{lesson.title}</h4>
               <div className="post">
@@ -33,7 +36,7 @@ class LessonPage extends Component {
             </div>
           </div>
         </div>
-      </section>
+      </div>
     )
   }
 }

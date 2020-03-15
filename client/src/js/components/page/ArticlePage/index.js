@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { fetchArticleId } from '../../ducks/articles'
+import { fetchArticleId } from '../../../ducks/articles'
 
 class ArticlePage extends Component {
   componentDidMount() {
@@ -11,7 +11,7 @@ class ArticlePage extends Component {
     if (!this.props.article.post) return null
     const { post } = this.props.article
 
-    console.log('ART-9', post)
+    console.log('ART-', post)
     return (
       <section>
         <div className="container">

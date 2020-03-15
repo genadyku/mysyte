@@ -31,7 +31,10 @@ const UserSchema = new Schema(
       required: "Password is required",
       trim: true,
     },
+    admin: {
+      type: String,
 
+    },
     isConfirm: {
       type: Boolean,
     },
